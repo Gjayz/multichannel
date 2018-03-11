@@ -18,5 +18,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected abstract int layoutId();
+
     protected abstract void init();
 }

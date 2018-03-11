@@ -14,6 +14,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void init() {
-
+        int i = 3 / 0;
     }
 }
