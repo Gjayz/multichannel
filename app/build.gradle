@@ -1,33 +1,23 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
-
-def getSdkPath(){
-    Properties properties = new Properties()
-    InputStream inputStream = project.rootProject.file('local.properties').newDataInputStream() ;
-    properties.load( inputStream )
-
-    return  properties.getProperty('sdk.dir')
-}
 
 android {
     signingConfigs {
         release {
-            keyAlias 'openproject'
-            keyPassword '123456'
-            storeFile file('./opendemo.jks')
-            storePassword '123456'
+            keyAlias rootProject.ext.signingConfigs.keyAlias
+            keyPassword  rootProject.ext.signingConfigs.keyPassword
+            storeFile file( rootProject.ext.signingConfigs.storeFile)
+            storePassword  rootProject.ext.signingConfigs.storePassword
         }
     }
-    compileSdkVersion 26
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
     defaultConfig {
-        applicationId "com.gjayz.opendemo"
-        minSdkVersion 19
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        applicationId rootProject.ext.android.applicationId
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
@@ -60,36 +50,48 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    annotationProcessor("com.tinkerpatch.tinker:tinker-android-anno:1.9.2")
+    provided("com.tinkerpatch.tinker:tinker-android-anno:1.9.2")
+    compile("com.tinkerpatch.sdk:tinkerpatch-android-sdk:1.2.2")
 }
+
+apply from: 'tinkerpatch.gradle'
 
 afterEvaluate {
     android.applicationVariants.all { variant ->
         variant.assemble.doLast {
-            if (variant.buildType.name.contains('release')) {
-                exec {
-                    ignoreExitValue true
-                    //mac 电脑执行shell脚本进行自动化多渠道打包
-//                    commandLine "sh", "${project.getRootDir()}/jiagu_mac/jiagu_360.sh", "${project.getProject().name}",
-//                            "${android.defaultConfig.applicationId}", "${android.defaultConfig.versionName}",
-//                            "${getSdkPath()}/build-tools/${android.buildToolsVersion}", "${android.signingConfigs.release.storeFile}",
-//                            "${android.signingConfigs.release.storePassword}", "${android.signingConfigs.release.keyAlias}",
-//                            "${android.signingConfigs.release.keyPassword}"
-
-                    //Windows电脑如果安装执行shell脚本的环境也可以执行shell脚本
-                    commandLine "cmd", "/c", "${project.getRootDir()}/jiagu/jiagu_360.sh", "${project.getProject().name}",
-                            "${android.defaultConfig.applicationId}", "${android.defaultConfig.versionName}",
-                            "${getSdkPath()}\\build-tools\\${android.buildToolsVersion}", "${android.signingConfigs.release.storeFile}",
-                            "${android.signingConfigs.release.storePassword}", "${android.signingConfigs.release.keyAlias}",
-                            "${android.signingConfigs.release.keyPassword}"
-
-                    //windows电脑执行bat批处理进行自动化多渠道打包
-//                    commandLine "cmd", "/c", "${project.getRootDir()}/jiagu/jiagu_360.bat", "${project.getProject().name}",
-//                            "${android.defaultConfig.applicationId}", "${android.defaultConfig.versionName}",
-//                            "${getSdkPath()}\\build-tools\\${android.buildToolsVersion}", "${android.signingConfigs.release.storeFile}",
-//                            "${android.signingConfigs.release.storePassword}", "${android.signingConfigs.release.keyAlias}",
-//                            "${android.signingConfigs.release.keyPassword}"
+            if (variant.buildType.name.contains('release') && rootProject.ext.android.multiChannels) {
+                if (rootProject.ext.android.isMACOS) {
+                    exec {
+                        ignoreExitValue true
+                        commandLine "sh", "${project.getRootDir()}/jiagu_mac/jiagu_360.sh", "${project.getProject().name}",
+                                "${android.defaultConfig.applicationId}", "${android.defaultConfig.versionName}",
+                                "${rootProject.ext.android.SdkPath}/build-tools/${android.buildToolsVersion}", "${android.signingConfigs.release.storeFile}",
+                                "${android.signingConfigs.release.storePassword}", "${android.signingConfigs.release.keyAlias}",
+                                "${android.signingConfigs.release.keyPassword}"
+                    }
+                }else if (rootProject.ext.android.isWindowsShell) {
+                    exec {
+                        ignoreExitValue true
+                        commandLine "cmd", "/c", "${project.getRootDir()}/jiagu/jiagu_360.sh", "${project.getProject().name}",
+                                "${android.defaultConfig.applicationId}", "${android.defaultConfig.versionName}",
+                                "${rootProject.ext.android.SdkPath}\\build-tools\\${android.buildToolsVersion}", "${android.signingConfigs.release.storeFile}",
+                                "${android.signingConfigs.release.storePassword}", "${android.signingConfigs.release.keyAlias}",
+                                "${android.signingConfigs.release.keyPassword}"
+                    }
+                }else {
+                    exec {
+                        ignoreExitValue true
+                        commandLine "cmd", "/c", "${project.getRootDir()}/jiagu/jiagu_360.bat", "${project.getProject().name}",
+                                "${android.defaultConfig.applicationId}", "${android.defaultConfig.versionName}",
+                                "${rootProject.ext.android.SdkPath}\\build-tools\\${android.buildToolsVersion}", "${android.signingConfigs.release.storeFile}",
+                                "${android.signingConfigs.release.storePassword}", "${android.signingConfigs.release.keyAlias}",
+                                "${android.signingConfigs.release.keyPassword}"
+                    }
                 }
             }
         }
     }
 }
+

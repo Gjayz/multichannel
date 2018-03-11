@@ -1,0 +1,8 @@
+ext{
+    signingConfigs = [
+            keyAlias :'openproject',
+            keyPassword :'123456',
+            storeFile :'./opendemo.jks',
+            storePassword :'123456'
+    ]
+}

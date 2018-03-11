@@ -1,9 +1,9 @@
 
 {
-	"buildFiles" : [ "E:/BackUp/tom/Downloads/opendemo/app/CMakeLists.txt" ],
+	"buildFiles" : [ "D:/Android/git/multichannel/app/CMakeLists.txt" ],
 	"cleanCommands" : 
 	[
-		"D:\\Andrioid\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build E:\\BackUp\\tom\\Downloads\\opendemo\\app\\.externalNativeBuild\\cmake\\release\\arm64-v8a --target clean"
+		"D:\\Android\\tools\\android-sdk-windows\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Android\\git\\multichannel\\app\\.externalNativeBuild\\cmake\\release\\arm64-v8a --target clean"
 	],
 	"cppFileExtensions" : [ "cpp" ],
 	"libraries" : 
@@ -12,27 +12,27 @@
 		{
 			"abi" : "arm64-v8a",
 			"artifactName" : "native-lib",
-			"buildCommand" : "D:\\Andrioid\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build E:\\BackUp\\tom\\Downloads\\opendemo\\app\\.externalNativeBuild\\cmake\\release\\arm64-v8a --target native-lib",
+			"buildCommand" : "D:\\Android\\tools\\android-sdk-windows\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Android\\git\\multichannel\\app\\.externalNativeBuild\\cmake\\release\\arm64-v8a --target native-lib",
 			"buildType" : "release",
 			"files" : 
 			[
 				
 				{
-					"flags" : "  --target=aarch64-none-linux-android --gcc-toolchain=D:/Andrioid/sdk/ndk-bundle/toolchains/aarch64-linux-android-4.9/prebuilt/windows-x86_64 --sysroot=D:/Andrioid/sdk/ndk-bundle/sysroot  -Dnative_lib_EXPORTS -isystem D:\\Andrioid\\sdk\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem D:\\Andrioid\\sdk\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\arm64-v8a\\include -isystem D:\\Andrioid\\sdk\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -isystem D:/Andrioid/sdk/ndk-bundle/sysroot/usr/include/aarch64-linux-android -D__ANDROID_API__=21 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC    -c ",
-					"src" : "E:/BackUp/tom/Downloads/opendemo/app/src/main/cpp/native-lib.cpp",
-					"workingDirectory" : "E:/BackUp/tom/Downloads/opendemo/app/.externalNativeBuild/cmake/release/arm64-v8a"
+					"flags" : "  --target=aarch64-none-linux-android --gcc-toolchain=D:/Android/tools/android-sdk-windows/ndk-bundle/toolchains/aarch64-linux-android-4.9/prebuilt/windows-x86_64 --sysroot=D:/Android/tools/android-sdk-windows/ndk-bundle/sysroot  -Dnative_lib_EXPORTS -isystem D:\\Android\\tools\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem D:\\Android\\tools\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\arm64-v8a\\include -isystem D:\\Android\\tools\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -isystem D:/Android/tools/android-sdk-windows/ndk-bundle/sysroot/usr/include/aarch64-linux-android -D__ANDROID_API__=21 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "D:/Android/git/multichannel/app/src/main/cpp/native-lib.cpp",
+					"workingDirectory" : "D:/Android/git/multichannel/app/.externalNativeBuild/cmake/release/arm64-v8a"
 				}
 			],
-			"output" : "E:/BackUp/tom/Downloads/opendemo/app/build/intermediates/cmake/release/obj/arm64-v8a/libnative-lib.so",
-			"toolchain" : "3420191941"
+			"output" : "D:/Android/git/multichannel/app/build/intermediates/cmake/release/obj/arm64-v8a/libnative-lib.so",
+			"toolchain" : "1371200129"
 		}
 	},
 	"toolchains" : 
 	{
-		"3420191941" : 
+		"1371200129" : 
 		{
-			"cCompilerExecutable" : "D:/Andrioid/sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
-			"cppCompilerExecutable" : "D:/Andrioid/sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
+			"cCompilerExecutable" : "D:/Android/tools/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
+			"cppCompilerExecutable" : "D:/Android/tools/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
 		}
 	}
 }
