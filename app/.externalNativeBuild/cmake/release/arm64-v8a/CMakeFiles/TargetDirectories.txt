@@ -1,3 +1,0 @@
-D:/Android/git/multichannel/app/.externalNativeBuild/cmake/release/arm64-v8a/CMakeFiles/native-lib.dir
-D:/Android/git/multichannel/app/.externalNativeBuild/cmake/release/arm64-v8a/CMakeFiles/edit_cache.dir
-D:/Android/git/multichannel/app/.externalNativeBuild/cmake/release/arm64-v8a/CMakeFiles/rebuild_cache.dir
